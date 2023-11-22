@@ -21,6 +21,7 @@ tmp/
 # Generated documentation
 /docs/gen/
 /docs/apidocs/
+/teaching_materials/
 /site/
 /*.html
 /docs/*.png
