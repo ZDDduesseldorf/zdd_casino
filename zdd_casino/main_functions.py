@@ -1,4 +1,4 @@
-from main_classes import CardDeck
+from zdd_casino.main_classes import CardDeck
 
 
 def count_cards(cards):

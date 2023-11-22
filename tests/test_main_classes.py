@@ -1,5 +1,5 @@
 import pytest
-from main_classes import CardDeck
+from zdd_casino.main_classes import CardDeck
 
 
 def test_card_deck():
