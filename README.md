@@ -2,8 +2,6 @@
 
 Not one of the greatest casinos... but still ...
 
-The project setup is documented in [project_setup.md](project_setup.md). Feel free to remove this document (and/or the link to this document) if you don't need it.
-
 ## Installation
 
 To install zdd_casino from GitHub repository, do:
