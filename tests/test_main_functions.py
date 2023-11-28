@@ -56,4 +56,4 @@ def test_play_robot_game():
     for _ in range(20):
         results.extend(play_game_robot_version(thresholds))
     results.sort()
-    assert results[10] == "Bot 2", "Median should be Bot 2."
+    assert results[10] == 10, "Median should be the strategy 10."
