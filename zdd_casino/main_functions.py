@@ -19,17 +19,59 @@ def count_cards(cards):
     return total
 
 
-def play_game():
-    """A game of Blackjack with multiple players."""
-    num_players = int(input("Enter the number of players: "))
-    players = [{'name': f"Player {i+1}", 'cards': [], 'score': 0} for i in range(num_players)]
+def play_game_robot_version(robot_risk_thresholds):
+    """Multiple AIs play a game of Blackjack.
+    
+    Parameters
+    ----------
+    robot_risk_thresholds:
+        List of numbers, each represents one AI bot.
+        The bot will continue to draw cards if the current points are below this value.
+    """
+    players = [{"name": f"Bot {i+1}", "cards": [], "score": 0, "threshold": thres} \
+               for i, thres in enumerate(robot_risk_thresholds)]
 
     card_deck = CardDeck(num_copies=4)
     card_deck.shuffle()
 
     # Initial dealing of two cards
     for player in players:
-        player['cards'] = card_deck.draw_cards(2)
+        player["cards"] = card_deck.draw_cards(2)
+
+    # Each player's turn
+    for player in players:
+        while True:
+            player["score"] = count_cards(player["cards"])
+
+            if player["score"] >= 21:
+                break
+
+            if player["score"] >= player["threshold"]:
+                break
+
+            player["cards"] += card_deck.draw_cards(1)
+
+    # Determine winner
+    winning_score = max(player["score"] for player in players if player["score"] <= 21)
+    winners = [player["name"] for player in players if player["score"] == winning_score]
+
+    # Final scores and winner announcement  
+    if winners:
+        return winners
+    return []
+
+
+def play_game():
+    """A game of Blackjack with multiple players."""
+    num_players = int(input("Enter the number of players: "))
+    players = [{"name": f"Player {i+1}", "cards": [], "score": 0} for i in range(num_players)]
+
+    card_deck = CardDeck(num_copies=4)
+    card_deck.shuffle()
+
+    # Initial dealing of two cards
+    for player in players:
+        player["cards"] = card_deck.draw_cards(2)
 
     # Each player's turn
     for player in players:
