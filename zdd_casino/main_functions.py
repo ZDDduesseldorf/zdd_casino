@@ -52,8 +52,11 @@ def play_game_robot_version(robot_risk_thresholds):
             player["cards"] += card_deck.draw_cards(1)
 
     # Determine winner
-    winning_score = max(player["score"] for player in players if player["score"] <= 21)
-    winners = [player["name"] for player in players if player["score"] == winning_score]
+    try:
+        winning_score = max(player["score"] for player in players if player["score"] <= 21)
+        winners = [player["name"] for player in players if player["score"] == winning_score]
+    except ValueError:
+        return []
 
     # Final scores and winner announcement  
     if winners:
@@ -90,8 +93,11 @@ def play_game():
             player['cards'] += card_deck.draw_cards(1)
 
     # Determine winner
-    winning_score = max(player['score'] for player in players if player['score'] <= 21)
-    winners = [player['name'] for player in players if player['score'] == winning_score]
+    try:
+        winning_score = max(player['score'] for player in players if player['score'] <= 21)
+        winners = [player['name'] for player in players if player['score'] == winning_score]
+    except ValueError:
+        winners = None
 
     # Final scores and winner announcement
     print("\nFinal Scores:")
