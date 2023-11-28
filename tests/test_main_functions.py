@@ -1,6 +1,6 @@
 import pytest
 from zdd_casino.main_functions import count_cards
-from zdd_casino.main_functions import play_game
+from zdd_casino.main_functions import play_game, play_game_robot_version
 from zdd_casino.main_classes import CardDeck
 from io import StringIO
 
@@ -48,3 +48,12 @@ def test_single_player_blackjack(monkeypatch):
     assert "Player 1, your cards: A, 10" in output.getvalue()
     assert "You have 21 points." in output.getvalue()
     assert "Winner(s): Player 1" in output.getvalue()
+
+
+def test_play_robot_game():
+    thresholds = [25, 10, 25]
+    results = []
+    for _ in range(20):
+        results.extend(play_game_robot_version(thresholds))
+    results.sort()
+    assert results[10] == "Bot 2", "Median should be Bot 2."
